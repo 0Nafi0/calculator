@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: #FDE5D4;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+.display {
+    background-color: #445D48;
+    padding: 30px 10px;
+    border-radius: 5px;
+    border: 3px solid rebeccapurple;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 24px;
+}
+
+.all-buttons {
+    display: flex;
+    margin-top: 10px;
+}
+
+button {
+    margin: 2px;
+    padding: 20px;
+    font-size: 18px;
+}
+
+.number-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.number {
+    background-color: #BCA37F;
+    color: #001524;
+}
+
+.operate-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.operate-buttons > button {
+    background-color: #BCA37F;
+    color: #001524;
+}
