@@ -39,7 +39,7 @@ const display = document.querySelector(".display");
 const updateDisplay = function() {
     display.textContent = displayValue;
 }
-
+updateDisplay();
 const createNumberButton = function(n) {
     const button = document.createElement("button");
     button.setAttribute("class", "number");
@@ -53,6 +53,17 @@ for (let i = 9 ; i >= 0; i--)
 }
 
 
+const clear = function() {
+    firstOperand = null;
+    secondOperand = null;
+    firstOperator = null;
+    secondOperator = null;
+    displayValue = 0;
+    result = null;
+    updateDisplay();
+}
+
+
 const numberClick = function(operand) {
     if (displayValue === "0" || displayValue === 0)
     displayValue = operand;
@@ -60,12 +71,23 @@ const numberClick = function(operand) {
     displayValue += operand;
     else if(secondOperand === null)
     displayValue += operand;
+
+    updateDisplay();
 }
 
 const operatorClick = function(operator) {
     if (firstOperand === null && (displayValue !== 0 || displayValue !== "0"))
     {
         firstOperand = displayValue;
+        firstOperator = operator;
+        displayValue = 0;
+    }
+    else if (firstOperator !== null && firstOperand !== null)
+    {
+        secondOperand = displayValue;
+        firstOperand = operations[firstOperator](Number(firstOperand), Number(secondOperand));
+        displayValue = firstOperand;
+        updateDisplay();
         firstOperator = operator;
         displayValue = 0;
     }
@@ -83,7 +105,6 @@ buttons.forEach((button) => {
         if (button.className === "number")
         {
             numberClick(button.textContent);
-            updateDisplay();
         }
         else if (button.className === "operator")
         {
@@ -92,8 +113,13 @@ buttons.forEach((button) => {
         else if (button.className === "result")
         {
             secondOperand = displayValue;
+            console.log(secondOperand);
             resultClick(firstOperand, secondOperand, firstOperator);
             updateDisplay();
+        }
+        else if (button.className === "clear")
+        {
+            clear();
         }
     })
 })
